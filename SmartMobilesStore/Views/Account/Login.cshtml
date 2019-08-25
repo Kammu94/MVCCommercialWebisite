@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<html ng-app="MyApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Store</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Assests/css/Stylesheet.css" rel="stylesheet" />
+
+</head>
+<body class="registration-body">
+
+
+
+    <div ng-controller="UserAccountController">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4 jumbotron-registration">
+                    <form name="productDetail">
+                        <div class="form-group">
+                            <h3>Login</h3>
+                            <label for="UserName">Username</label>
+                            <input type="Email" class="form-control" placeholder="Enter Username" ng-model="login.email" name="UserName" required ng-pattern="" />
+                            <p ng-show="productDetail.UserName.$error.email" class="text-danger">Your Email is invalid.</p>
+
+
+
+                            <label for="Password">Password</label>
+                            <input name="password" ng-model="login.password" type="password" placeholder="Password"
+                                   required ng-maxlength="10" class="form-control">
+                            @*<p ng-show="productDetail.password.$error.minlength" class="text-danger">Password should have at least 6  characters .</p>*@
+                            <p ng-show="productDetail.password.$error.maxlength" class="text-danger">Password should not exceed 10 characters</p>
+                            <input type="submit" class="btn btn-success" value="submit" ng-click="validateLogin(login)" />
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="login" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{loginmessage}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.5.6/angular-messages.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <script src="~/Assests/js/AngularScript.js"></script>
+    <script src="~/Assests/js/AdminController.js"></script>
+    <script src="~/Assests/js/UserAccountController.js"></script>
+
+    <script src="~/Assests/js/ProductController.js"></script>
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
+

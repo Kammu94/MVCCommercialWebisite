@@ -1,0 +1,227 @@
+﻿
+@model SmartMobilesStore.Models.UserAccountModel
+@{
+    ViewBag.Title = "UserRegistrationForm";
+    Layout = null;
+}
+<html ng-app="MyApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Store</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Assests/css/Stylesheet.css" rel="stylesheet" />
+
+</head>
+<body class="registration-body">
+
+    @{
+        if (ViewBag.ErrorMessage != null)
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="alert alert-danger">
+                        @ViewBag.ErrorMessage
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    @using (Html.BeginForm("Index", "Account", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="container">
+
+                
+                <div class="row">
+
+                    <div class="col-lg-2"></div>
+
+                    <div class="col-lg-8 jumbotron-registration">
+                        <h2>RegistrationForm</h2>
+
+
+                        <table class=" table table-responsive">
+                            <tr>
+                                <td>
+
+                                    @Html.LabelFor(a => a.FirstName, new { @class = "form-group" })
+
+
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control form-group" })
+                                </td>
+
+
+
+                                <td> @Html.LabelFor(a => a.LastName, new { @class = " "})</td>
+
+
+                                <td>   @Html.TextBoxFor(a => a.LastName, new { @class = "form-control" })</td>
+
+                            </tr>
+                            @*row for first name and lastname validation*@
+                            <tr>
+
+                                <td></td>
+                                <td>
+                                    @Html.ValidationMessageFor(a => a.FirstName, "", new { @class = "text-danger" })</td>
+
+
+
+                                <td></td>
+
+
+                                <td>
+                                    @Html.ValidationMessageFor(a => a.LastName, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+
+
+                            @*for Email*@
+                            <tr>
+                                <td>
+
+                                    @Html.LabelFor(a => a.Email, new { @class = "form-group " })
+                                </td>
+
+                                <td>
+                                    @Html.TextBoxFor(a => a.Email, new { @class = "form-control form-group " })
+                                </td>
+
+
+
+                                <td> @Html.LabelFor(a => a.ContactNumber, new { @class = "  " })</td>
+
+
+                                <td>   @Html.TextBoxFor(a => a.ContactNumber, new { @class = "form-control" })</td>
+
+                            </tr>
+                            <tr>
+
+                                <td></td>
+                                <td>
+                                    @Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })
+                                </td>
+
+
+
+                                <td></td>
+
+
+                                <td>
+                                    @Html.ValidationMessageFor(a => a.ContactNumber, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+
+
+                            @*for ConfirmPassword*@
+                            <tr>
+                                <td>
+
+                                    @Html.LabelFor(a => a.Password, new { @class = "form-group " })
+                                </td>
+
+                                <td>
+                                    @Html.TextBoxFor(a => a.Password, new { @class = "form-control form-group ",
+                                   type = "password" })
+                                </td>
+
+
+
+                                <td> @Html.LabelFor(a => a.ConfirmPassword, new { @class = "  " })</td>
+
+
+                                <td>   @Html.TextBoxFor(a => a.ConfirmPassword, new { @class = "form-control form-group  ", type = "password" })</td>
+
+                            </tr>
+                            <tr>
+
+                                <td></td>
+                                <td>
+                                    @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+                                </td>
+
+
+
+                                <td></td>
+
+
+                                <td>
+                                    @Html.ValidationMessageFor(a => a.ConfirmPassword, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+
+
+
+                            @*for Gender*@
+                            <tr>
+                                <td> @Html.LabelFor(a => a.Gender, new { @class = " " })</td>
+                                <td>
+
+                                    @Html.RadioButtonFor(a => a.Gender, "Male", true) Male
+                                
+                                
+                                    @Html.RadioButtonFor(a => a.Gender, "Female", false) Female
+                                </td>
+
+
+
+
+
+                                <td>@Html.LabelFor(a => a.Country)</td>
+                                <td>
+                                    @Html.DropDownListFor(a => a.Country, new List<SelectListItem>
+                                       { new SelectListItem{Text="India", Value="India"},
+                                         new SelectListItem{Text="China", Value="China"},
+                                         new SelectListItem{Text="Australia", Value="Australia"},
+                                         new SelectListItem{Text="France", Value="France"},
+                                         new SelectListItem{Text="Unites States", Value="Unites States"},
+                                         new SelectListItem{Text="Russia", Value="Russia"},
+                                         new SelectListItem{Text="Canada", Value="Canada"}},
+                                         "Please select")
+                                </td>
+                            <tr>
+
+                                <td></td>
+                                <td>
+                                    @Html.ValidationMessageFor(a => a.Gender, "", new { @class = "text-danger" })
+                                </td>
+
+
+
+                                <td></td>
+
+
+                                <td>
+                                    @Html.ValidationMessageFor(a => a.Country, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="submit" value="Submit" class=" btn add-to-cart" /></td>
+                            </tr>
+
+                        </table>
+
+
+                        @*for Submit*@
+
+
+                    </div>
+                </div>
+            </div>
+   }
+</body>
+</html>
+
+

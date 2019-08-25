@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMobilesStore", "SmartMobilesStore\SmartMobilesStore.csproj", "{8CDA4978-4D26-4A9A-A145-13D91CCCE64D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MobileSiteDataLayer", "MobileSiteDataLayer", "{588BA68D-2FF3-4109-8A8D-4BAECDB30837}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MobileSiteBusinessLayer", "MobileSiteBusinessLayer", "{38EE28F5-9C67-4BA2-8D8B-CA3C06F601D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileSiteDataLayer", "MobileSiteDataLayer\MobileSiteDataLayer.csproj", "{737F5231-2A63-48C2-B639-87EDB7FA7C17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileSiteBusinessLogic", "MobileSiteBusinessLogic\MobileSiteBusinessLogic.csproj", "{CE325751-9BCF-4A22-ADB3-D1F5F8780FD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileSiteBusinessEntities", "MobileSiteBusinessEntities\MobileSiteBusinessEntities.csproj", "{DEC2B161-67BD-4F5B-8EC5-E9301C915E30}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CDA4978-4D26-4A9A-A145-13D91CCCE64D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CDA4978-4D26-4A9A-A145-13D91CCCE64D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CDA4978-4D26-4A9A-A145-13D91CCCE64D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CDA4978-4D26-4A9A-A145-13D91CCCE64D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{737F5231-2A63-48C2-B639-87EDB7FA7C17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{737F5231-2A63-48C2-B639-87EDB7FA7C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{737F5231-2A63-48C2-B639-87EDB7FA7C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{737F5231-2A63-48C2-B639-87EDB7FA7C17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE325751-9BCF-4A22-ADB3-D1F5F8780FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE325751-9BCF-4A22-ADB3-D1F5F8780FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE325751-9BCF-4A22-ADB3-D1F5F8780FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE325751-9BCF-4A22-ADB3-D1F5F8780FD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC2B161-67BD-4F5B-8EC5-E9301C915E30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC2B161-67BD-4F5B-8EC5-E9301C915E30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC2B161-67BD-4F5B-8EC5-E9301C915E30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC2B161-67BD-4F5B-8EC5-E9301C915E30}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{737F5231-2A63-48C2-B639-87EDB7FA7C17} = {588BA68D-2FF3-4109-8A8D-4BAECDB30837}
+		{CE325751-9BCF-4A22-ADB3-D1F5F8780FD4} = {38EE28F5-9C67-4BA2-8D8B-CA3C06F601D8}
+		{DEC2B161-67BD-4F5B-8EC5-E9301C915E30} = {38EE28F5-9C67-4BA2-8D8B-CA3C06F601D8}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div ng-controller="ProductController">
+    <section>
+
+
+        <div class="banner-section">
+            <div class="container " ng-init="getLatestProducts();getFeaturedProducts()">
+                <div class="row banner-margin">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="banner-item-1">
+                            <div class="banner-image">
+                                <a href="#"><img src="~/Assests/images/banner-4.jpg" /></a>
+                            </div>
+                            <h3 class="banner-title">
+                                <a href="#">Sony SmartPhone</a>
+                            </h3>
+
+                            <h3 class="pro-price">869.00$</h3>
+                            <div class=" banner-button">
+                                <a href="#">
+                                    ShopNow
+
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <a href="#"><img src="~/Assests/images/banner-4.jpg" /></a>
+
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <a href="#"><img src="~/Assests/images/banner-4.jpg" /></a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Banner section ends-->
+    <!--Feature products starts-->
+    <section>
+        <div class="container"ng-controller="OrderController">
+            <div class="row  banner-margin">
+              
+                <div class="col-md-12">
+                    <div class="product-feature-title pull-left">
+                        <h2 class="uppercase"><strong>NEW PRODUCTS</strong></h2>
+                        <h6>There are many variations of passages of brands available</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-products">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="prod in getProdList">
+                        <div class=" product-item-margin">
+                            <div class="product-feature-image">
+                               
+
+                                    <a href="~/Product/DescriptionPage/{{prod.ProductId}}"><img  ng-src="~/Assests/images/{{prod.SecondImage}}" class="img-responsive" /></a>
+                                
+                                <div class=" prod-info">
+                                    <a href="#">
+                                        <h6 class=" prod-title" ng-bind="prod.ProductName"></h6>
+                                    </a>
+
+
+                                 
+                                    <a href="~/Product/DescriptionPage/{{prod.ProductId}}"><h6 class="brand-name" ng-bind="prod.OperatingSystem"></h6></a>
+                                    <a href="~/Product/DescriptionPage/{{prod.ProductId}}"><h3 class="prod-price" ng-bind="prod.SellingPrice+'&#x20b9'">$</h3></a>
+                                        
+                                    <button class="btn add-to-cart" ng-click="addToCart(prod)" >Add To Cart</button>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section>
+        <!--Homepage product list-->
+        <div class="container prod-margins">
+            <div class="row">
+                <div class="col-sm-12 col-lg-8 col-xs-12"><img src="~/Assests/images/home.jpg" class="img-responsive " /></div>
+
+                <div class="col-sm-12 col-lg-4 col-xs-12"><img src="~/Assests/images/HOME-2.jpg" class="img-responsive" /></div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <!--feature products ends-->
+    <!--Product list  tab starts-->
+    <section>
+        <div class="product-tab-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="prod-tab-title">
+                            <h2 class="prod-title">Product List</h2>
+                            <h6>There are too many variations of passages of brands available</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="prod-tab-menu">
+                            <!--nav tabs-->
+                            <ul class="list-inline">
+                                <li class="active">
+                                    <a href="#" data-toggle="tab">Popular Products</a>
+                                </li>
+                                <li class=" ">
+                                    <a href="#" data-toggle="tab">New Arrivals</a>
+                                </li>
+                                <li class="">
+                                    <a href="#" data-toggle="tab">Best Seller</a>
+                                </li>
+                                <li class="">
+                                    <a href="#" data-toggle="tab">Special Offers</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--product list starts from here-->
+    <section>
+        <div class="container">
+            <div class="row  banner-margin">
+                <!--ROW FOR HEADING-->
+                <div class="col-md-12 col-xs-12">
+                    <div class="product-feature-title pull-left">
+                        <h2 class="uppercase"><strong>NEW PRODUCTS</strong></h2>
+                        <h6>There are many variations of passages of brands available</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-products">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 col-xs-12" ng-repeat="prod in getProductList">
+                        <div class=" product-item-margin">
+                            <div class="product-feature-image">
+                                <a href="#">
+                                    <img ng-src="~/Assests/images/{{prod.SecondImage}}" class="img-responsive" />
+                                </a>
+                                <div class=" prod-info">
+                                    <h6 class=" prod-title">
+                                        <a href="#" class=" prod-title" ng-bind="prod.ProductName"></a>
+
+                                    </h6>
+                                   <a href="#"><h6 class="brand-name" ng-bind="prod.OperatingSystem"></h6></a>
+                                    <a href="#"><h3 class="prod-price" ng-bind="prod.SellingPrice+'&#x20b9'"></h3></a>
+                                    <button class="btn add-to-cart bt-sm">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

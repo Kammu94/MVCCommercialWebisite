@@ -1,0 +1,192 @@
+﻿
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = null;
+}
+<html ng-app="MyApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Store</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Assests/css/Stylesheet.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div ng-controller="AdminController" ng-init="getData()">
+        <div class="container jumbotron-registration">
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <form name="productDetail" ng-submit="sendDetails(prod)&&productDetail.$valid">
+                        <div class="form-group">
+
+                            <h3><strong>ADD PRODUCTS</strong></h3>
+                            <label for="Product Name">Product Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Products Name" ng-model="prod.ProductName" name="ProductName" required />
+                            @*<p ng-show="productDetail.ProductName.$error.required && productDetail.ProductName.$touched" class="text-danger">Please Fill Product Name Field</p>*@
+
+
+                            <label for="Selling Price">Selling Price</label>
+
+                            <input type="text" class="form-control" ng-model="prod.SellingPrice" name="sellingPrice" pattern="^(0|[1-9][0-9]*)$" required />
+                            @*<p ng-show="productDetail.sellingPrice.$error.required && productDetail.sellingPrice.$touched" class="text-danger">Please Fill Selling Price Field</p>*@
+                            <p ng-show="productDetail.sellingPrice.$error.pattern" class="text-danger">Only Numbers are required</p>
+
+                            <label for="MarketPrice">Market Price</label>
+
+                            <input type="text" class="form-control" ng-model="prod.MarketPrice" name="marketPrice" pattern="^(0|[1-9][0-9]*)$" required />
+
+                            @*<p ng-show="productDetail.marketPrice.$error.required && productDetail.marketPrice.$touched" class="text-danger">Please Fill Market Price Field</p>*@
+                            <p ng-show="productDetail.marketPrice.$error.pattern" class="text-danger">Only Numbers are required</p>
+
+
+                            <label for="Stock">Stock</label>
+                            <input type="text" class="form-control" ng-model="prod.Stock" name="stock" required />
+                            @*<p ng-show="productDetail.stock.$error.required && productDetail.stock.$touched" class="text-danger">Please Fill Market Price Field</p>*@
+                            <p ng-show="productDetail.stock.$error.pattern" class="text-danger">Only Numbers are required</p>
+
+                            <label for="OperatingSystem">Operating System</label>
+                            <select class="form-control" id="os" ng-model="prod.OperatingSystem">
+                                <option>Windows</option>
+                                <option>Android</option>
+                                <option>IOs</option>
+                                <option>BlackberryOS</option>
+
+
+                            </select>
+
+                            <label for="Description">Description</label>
+                            <textarea rows="4" cols="20" class="form-control" ng-model="prod.Description" name="Description" required></textarea>
+                            @*<p ng-show="productDetail.Description.$error.ng-required && productDetail.Description.$touched" class="text-danger">Please Fill Description Field</p>*@
+                            <br />
+
+                            <label for="DateOfInsert">Date</label>
+                            <input type="datetime" class="form-control" ng-model="prod.DateOfInsert" placeholder="YYYY-MM-DD" required />
+                            @*<p ng-show="productDetail.stock.$error.required && productDetail.stock.$touched" class="text-danger">Please Fill Date Field</p>*@
+
+                            <label for="Color">Color</label>
+                            <select class="form-control" id="os" ng-model="prod.Color">
+                                <option value="Black">Black</option>
+                                <option value="Blue">Blue</option>
+                                <option value="Red">Red</option>
+                                <option value="White">White</option>
+
+
+                            </select>
+
+                            <label for="FirstImage">Image1</label>
+                            <input type="file" ng-model="prod.FirstImage" name="FirstImage" onchange="angular.element(this).scope().uploadFile(this.files,1)" class="btn-default btn-sm margin-top-xs" required />
+
+
+                            <label for="SecondImage">Image2</label>
+                            <input type="file" name="SecondImage" ng-model="prod.SecondImage" onchange="angular.element(this).scope().uploadFile(this.files,2)" class="btn-default btn-sm margin-top-xs" required />
+
+
+
+                            <label for="ThirdImage">Image3</label>
+                            <input type="file" name="=ThirdImage" ng-model="prod.ThirdImage" onchange="angular.element(this).scope().uploadFile(this.files,3)" class="btn-default btn-sm margin-top-xs" required />
+
+                            <label for="Rating">Rating</label>
+                            <input type="text" name="rating" class="form-control" ng-model="prod.Rating" required />
+                            
+                            <p ng-show="productDetail.rating.$error.pattern" class="text-danger">Only Numbers are required</p>
+
+
+
+
+                            <input type="checkbox" ng-model="prod.IsAvailable" checked />
+                            <label for="Availability">Available</label>
+                            <br />
+                            <input type="submit" class="btn btn-danger" value="Submit" ng-disabled="productDetail.$error.pattern"/>
+                             
+                            <br />
+
+
+                        </div>                                                                          
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="container">
+                <div class="row">
+                   
+                    <div class="col-lg-4 col-sm-12 col-xs-12">
+                        <label for="search">Search</label>
+                        <input type="text" class="form-control" placeholder="Enter your text" ng-model="searchProduct" />
+                        <table class="table table-responsive table-bordered">
+
+                            <thead>
+                                <tr>
+
+                                    <th>ProductName</th>
+                                    <th>SellingPrice</th>
+                                    <th>MarketPrice</th>
+                                    <th>FirstImage</th>
+                                    <th>SecondImage</th>
+                                    <th>ThirdImage</th>
+                                    <th>Rating</th>
+                                    <th>IsAvailable</th>
+
+                                    <th>OperatingSystem</th>
+
+                                    <th>Stock</th>
+                                    <th>Color</th>
+                                    <th>Edit</th>
+                                    <th>Remove</th>
+
+                                </tr>
+                            </thead>
+
+                            <tr ng-repeat="prod in getList|filter:searchProduct">
+
+                                <td ng-bind="prod.ProductName"></td>
+                                <td ng-bind="prod.SellingPrice"></td>
+                                <td ng-bind="prod.MarketPrice"></td>
+                                <td><img src="~/Assests/images/{{prod.FirstImage}}" class="img-responsive" /></td>
+                                <td><img src="~/Assests/images/{{prod.SecondImage}}" class="img-responsive" /></td>
+                                <td><img src="~/Assests/images/{{prod.ThirdImage}}" class="img-responsive" /></td>
+                                <td ng-bind="prod.Rating"></td>
+                                <td ng-bind="prod.IsAvailable"></td>
+
+                                <td ng-bind="prod.OperatingSystem"></td>
+
+                                <td ng-bind="prod.Stock"></td>
+                                <td ng-bind="prod.Color"></td>
+                                <td><button class="btn btn-success fa fa-trash" ng-click="editProduct(prod.ProductId)"></button></td>
+
+
+                                <td><button class="btn btn-success fa fa-trash" ng-click="deleteProduct(prod.ProductId)"></button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.5.6/angular-messages.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <script src="~/Assests/js/AngularScript.js"></script>
+    <script src="~/Assests/js/AdminController.js"></script>
+    <script src="~/Assests/js/UserAccountController.js"></script>
+
+    <script src="~/Assests/js/ProductController.js"></script>
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>

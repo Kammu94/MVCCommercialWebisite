@@ -1,0 +1,211 @@
+﻿@Model ProductDetailModel 
+@{
+    ViewBag.Title = "DescriptionPage";
+}
+
+
+<div ng-controller="ProductController"ng-init="getLatestProducts()">
+    <div class="container">
+        <section>
+            <div class="row">
+                <div class="col-lg-12">
+                    <img src="~/Assests/images/desc-header.jpg" class="img-responsive" />
+                </div>
+            </div>
+
+        </section>
+        <section>
+            <!--Product description starts -->
+            @*<div ng-controller="OrderController">*@
+                <div class="row">
+                    <div class="col-lg-8 col-sm-12 col-xs-12">
+                        <div class="description-block">
+                            <div class="col-lg-6">
+                                <img src="~/Assests/images/@Model.SecondImage" class="img-responsive" ng-model="list.secondImage"/>
+                                <span>
+                                    <img src="~/Assests/images/@Model.FirstImage" class="img-thumbnail "ng-model="list.firstimage" />
+                                    <img src="~/Assests/images/@Model.ThirdImage" class="img-thumbnail "ng-model="list.thirdimage" />
+                                    <img src="~/Assests/images/@Model.SecondImage" class="img-thumbnail "ng-model="list.secondImage" />
+
+                                </span>
+                                <hr />
+
+                                <!--image thumnails-->
+
+
+                            </div>
+                            <!--description text-->
+
+                            <div class="col-lg-6 description-text ">
+
+
+                                <p class="prod-details brand-size" ng-model="list.productName">
+                                    <strong>@Model.ProductName</strong>
+                                </p>
+
+                                <p class="brand-name"ng-model="list.brandName">
+
+                                    <strong>@Model.OperatingSystem</strong>
+                                </p>
+                                <hr />
+                                @*We are showng  rating with stars *@
+                                <p class="color-filter" ng-model="list.color">
+                                    <strong>Color: @Model.Color</strong>
+
+                                    @if (Model.Rating == 3)
+                                    {
+                                        <span class="rating pull-right" ng-model="list.rating">
+                                            <i class="fa fa-star star-shine"></i>
+                                            <i class="fa fa-star star-shine"></i>
+                                            <i class="fa fa-star star-shine"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                            
+                                        </span>
+                                    }
+                                    @if (Model.Rating == 1)
+                                    {
+
+                                        <span class="rating pull-right" ng-model="list.rating">
+                                            <i class="fa fa-star star-shine"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                        </span>
+
+                                    }
+                                    @if (Model.Rating == 2)
+
+                                    {
+
+                                        <span class="rating pull-right" ng-model="list.rating">
+                                            <i class="fa fa-star star-shine"></i>
+                                            <i class="fa fa-star star-shine"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                        </span>
+
+                                    }
+                                    @if (Model.Rating == 4)
+                                    {
+
+                                        <span class="rating pull-right" ng-model="list.rating">
+                                            <i class="fa fa-star star-shine"></i>
+                                            <i class="fa fa-star star-shine"></i>
+                                            <i class="fa fa-star star-shine"></i>
+                                            <i class="fa fa-star star-shine"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                        </span>
+
+                                    }
+                                    @if (Model.Rating == 5)
+                                    {
+                                        <i class="fa fa-star star-shine"></i>
+                                        <i class="fa fa-star star-shine"></i>
+                                        <i class="fa fa-star star-shine"></i>
+                                        <i class="fa fa-star star-shine"></i>
+                                        <i class="fa fa-star star-shine"></i>
+
+                                    }
+                                    @if (Model.Rating == 0)
+                                    {
+
+                                        <span class="rating pull-right" ng-model="list.rating">
+                                            <i class="fa fa-star star-dull"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                            <i class="fa fa-star star-dull"></i>
+                                            </span>
+
+                                            }
+
+                                    </p>
+                            <hr />
+
+                            <p class="quantity"ng-model="list.quantity">
+                                <strong> Quantity</strong><input type="number" min="0" max="5" class="" />
+
+                            </p>
+                            <hr />
+
+                            <p class="price"ng-model="list.sellingPrice"><strong>Price:<span>&#36</span> @Model.SellingPrice</strong></p>
+                                <hr />
+
+                            <input type="button" class="btn add-to-cart" value="Add To Cart" ng-click="addToCart(list)">
+                        </div>
+                    </div>
+                    <hr />
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+            <div class="col-lg-4 col-sm-4">
+
+
+            </div>
+        @*</div>*@
+            
+
+        </section>
+        <section>
+            <!--for description text-->
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                    <h4><strong>Description</strong></h4>
+                    <hr />
+                    <p class="description-text">@Model.Description</p>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <!--filter os-->
+
+                </div>
+           </div>
+                </section>
+      
+                <!--RELATED PRODUCTS HEADING-->
+                <div class="row  banner-margin">
+
+                    <div class="col-md-12">
+                        <div class="product-feature-title pull-left">
+                            <h2 class="uppercase"><strong>NEW PRODUCTS</strong></h2>
+                            <h6>There are many variations of passages of brands available</h6>
+                        </div>
+                    </div>
+                </div>
+                <!--RELATED PRODCTS-->
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6" ng-repeat="prod in getProdList">
+                        <div class=" product-item-margin">
+                            <div class="product-feature-image">
+                                <a href="~/Product/DescriptionPage/{{prod.ProductId}}">
+
+                                    <img ng-src="~/Assests/images/{{prod.SecondImage}}" class="img-responsive" />
+                                </a>
+                                <div class=" prod-info">
+                                    <a href="~/Product/DescriptionPage/{{prod.ProductId}}">
+                                        <h6 class=" prod-title brand-size" ng-bind="prod.ProductName"></h6>
+                                    </a>
+
+
+                                    <a href="~/Product/DescriptionPage/{{prod.ProductId}}"><h6 class="brand-name" ng-bind="prod.OperatingSystem"></h6></a>
+                                    <h3 class="prod-price" ng-bind="prod.SellingPrice"> </h3>
+                                    <button class="btn add-to-cart bt-sm">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+     
+    

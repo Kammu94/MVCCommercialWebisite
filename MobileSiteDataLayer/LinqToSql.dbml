@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MobileSiteDatabase" Class="LinqToSqlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=AMIR\SQLEXPRESS;Initial Catalog=MobileSiteDatabase;Integrated Security=True" SettingsObjectName="MobileSiteDataLayer.Properties.Settings" SettingsPropertyName="MobileSiteDatabaseConnectionString3" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ProductInformation" Member="ProductInformations">
+    <Type Name="ProductInformation">
+      <Column Name="ProductId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SellingPrice" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="MarketPrice" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="Stock" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DateOfInsert" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Rating" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="OperatingSystem" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsAvailable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FirstImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SecondImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ThirdImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.ProcGetLatestProducts" Method="ProcGetLatestProducts">
+    <ElementType Name="ProcGetLatestProductsResult">
+      <Column Name="ProductId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SellingPrice" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="OperatingSystem" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SecondImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProcDeleteProduct" Method="ProcDeleteProduct">
+    <Parameter Name="ProductId" Parameter="productId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProcGetProductPageDetails" Method="ProcGetProductPageDetails">
+    <Parameter Name="ProductId" Parameter="productId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="ProcGetProductPageDetailsResult">
+      <Column Name="ProductId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SellingPrice" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OperatingSystem" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Rating" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="SecondImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProcGetLoginCredentials" Method="ProcGetLoginCredentials">
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="ProcGetLoginCredentialsResult">
+      <Column Name="IsValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProcInsertSiteUserCredentials" Method="ProcInsertSiteUserCredentials">
+    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Gender" Parameter="gender" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Country" Parameter="country" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ContactNumber" Parameter="contactNumber" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="ProcInsertSiteUserCredentialsResult">
+      <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProcInsertBasketItems" Method="ProcInsertBasketItems">
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ProductId" Parameter="productId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Total" Parameter="total" Type="System.Int32" DbType="Int" />
+    <Parameter Name="BasketId" Parameter="basketId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="SellingPrice" Parameter="sellingPrice" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ItemId" Parameter="itemId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="ProcInsertBasketItemsResult">
+      <Column Name="CartId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProcGetProductList" Method="ProcGetProductList">
+    <ElementType Name="ProcGetProductListResult">
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SellingPrice" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="OperatingSystem" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SecondImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProcInsertProducts" Method="ProcInsertProducts">
+    <Parameter Name="ProductId" Parameter="productId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="ProductName" Parameter="productName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SellingPrice" Parameter="sellingPrice" Type="System.Decimal" DbType="Decimal(18,3)" />
+    <Parameter Name="MarketPrice" Parameter="marketPrice" Type="System.Decimal" DbType="Decimal(18,3)" />
+    <Parameter Name="Stock" Parameter="stock" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="DateOfInsert" Parameter="dateOfInsert" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Rating" Parameter="rating" Type="System.Decimal" DbType="Decimal(5,0)" />
+    <Parameter Name="OperatingSystem" Parameter="operatingSystem" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Color" Parameter="color" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="IsAvailable" Parameter="isAvailable" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="FirstImage" Parameter="firstImage" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SecondImage" Parameter="secondImage" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ThirdImage" Parameter="thirdImage" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ProcGetProductData" Method="ProcGetProductData">
+    <ElementType Name="ProcGetProductDataResult">
+      <Column Name="ProductId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SellingPrice" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="MarketPrice" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="Stock" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DateOfInsert" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Rating" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="OperatingSystem" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsAvailable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FirstImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SecondImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ThirdImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procGetAdminCredentials" Method="procGetAdminCredentials">
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="procGetAdminCredentialsResult">
+      <Column Name="isvalid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProcGetProductListBulk" Method="ProcGetProductListBulk">
+    <ElementType Name="ProcGetProductListBulkResult">
+      <Column Name="ProductId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SellingPrice" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="OperatingSystem" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SecondImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Rating" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procGetSelectedFilters" Method="procGetSelectedFilters">
+    <ElementType Name="procGetSelectedFiltersResult">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="filtername" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="filterType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procDeleteSelectedFilters" Method="procDeleteSelectedFilters">
+    <Parameter Name="filterId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="procDeleteSelectedFiltersResult">
+      <Column Name="IsValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procGetProductsBycolor" Method="procGetProductsBycolor">
+    <Parameter Name="color" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="selectedFilter" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="procGetProductsBycolorResult">
+      <Column Name="ProductId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SellingPrice" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="OperatingSystem" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SecondImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Rating" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
+      <Column Name="Color" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
