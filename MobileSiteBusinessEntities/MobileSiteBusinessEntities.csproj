@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="ModelsEntities\BasketEntities.cs" />
     <Compile Include="ModelsEntities\Class1.cs" />
     <Compile Include="ModelsEntities\OrderEntities.cs" />
     <Compile Include="ModelsEntities\ProductDetailEntities.cs" />

@@ -44,15 +44,6 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.ProcGetLoginCredentials" Method="ProcGetLoginCredentials">
-    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(50)" />
-    <ElementType Name="ProcGetLoginCredentialsResult">
-      <Column Name="IsValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Message" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.ProcInsertSiteUserCredentials" Method="ProcInsertSiteUserCredentials">
     <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
     <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(50)" />
@@ -65,19 +56,6 @@
     <ElementType Name="ProcInsertSiteUserCredentialsResult">
       <Column Name="isValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Message" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.ProcInsertBasketItems" Method="ProcInsertBasketItems">
-    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
-    <Parameter Name="ProductId" Parameter="productId" Type="System.Guid" DbType="UniqueIdentifier" />
-    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
-    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
-    <Parameter Name="Total" Parameter="total" Type="System.Int32" DbType="Int" />
-    <Parameter Name="BasketId" Parameter="basketId" Type="System.Guid" DbType="UniqueIdentifier" />
-    <Parameter Name="SellingPrice" Parameter="sellingPrice" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ItemId" Parameter="itemId" Type="System.Guid" DbType="UniqueIdentifier" />
-    <ElementType Name="ProcInsertBasketItemsResult">
-      <Column Name="CartId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.ProcGetProductList" Method="ProcGetProductList">
@@ -167,6 +145,59 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Rating" Type="System.Decimal" DbType="Decimal(5,0)" CanBeNull="true" />
       <Column Name="Color" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procIsBasketExisted" Method="procIsBasketExisted">
+    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="procIsBasketExistedResult">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsExisted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProcGetLoginCredentials" Method="ProcGetLoginCredentials">
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="ProcGetLoginCredentialsResult">
+      <Column Name="IsValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procGetUserBasketItems" Method="procGetUserBasketItems">
+    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="procGetUserBasketItemsResult">
+      <Column Name="ProductId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="SecondImage" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BaketHeaderId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.procDeleteUserBasket" Method="procDeleteUserBasket">
+    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="BasketHeaderId" Parameter="basketHeaderId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="BasketLineId" Parameter="basketLineId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="ProductId" Parameter="productId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="procDeleteUserBasketResult">
+      <Column Name="IsValid" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ProcInsertBasketItems" Method="ProcInsertBasketItems">
+    <Parameter Name="ProductId" Parameter="productId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Quantity" Parameter="quantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UserId" Parameter="userId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Total" Parameter="total" Type="System.Decimal" DbType="Decimal(10,2)" />
+    <Parameter Name="BasketId" Parameter="basketId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="BasketHeaderId" Parameter="basketHeaderId" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="Price" Parameter="price" Type="System.Decimal" DbType="Decimal(12,2)" />
+    <Parameter Name="StockCode" Parameter="stockCode" Type="System.String" DbType="NVarChar(200)" />
+    <ElementType Name="ProcInsertBasketItemsResult">
+      <Column Name="BasketId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

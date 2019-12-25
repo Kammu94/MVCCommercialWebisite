@@ -68,7 +68,7 @@
                             <br />
 
                             <label for="DateOfInsert">Date</label>
-                            <input type="datetime" class="form-control" ng-model="prod.DateOfInsert" placeholder="YYYY-MM-DD" required />
+                            
                             @*<p ng-show="productDetail.stock.$error.required && productDetail.stock.$touched" class="text-danger">Please Fill Date Field</p>*@
 
                             <label for="Color">Color</label>
@@ -93,16 +93,10 @@
                             <label for="ThirdImage">Image3</label>
                             <input type="file" name="=ThirdImage" ng-model="prod.ThirdImage" onchange="angular.element(this).scope().uploadFile(this.files,3)" class="btn-default btn-sm margin-top-xs" required />
 
-                            <label for="Rating">Rating</label>
-                            <input type="text" name="rating" class="form-control" ng-model="prod.Rating" required />
-                            
-                            <p ng-show="productDetail.rating.$error.pattern" class="text-danger">Only Numbers are required</p>
 
 
 
 
-                            <input type="checkbox" ng-model="prod.IsAvailable" checked />
-                            <label for="Availability">Available</label>
                             <br />
                             <input type="submit" class="btn btn-danger" value="Submit" ng-disabled="productDetail.$error.pattern"/>
                              

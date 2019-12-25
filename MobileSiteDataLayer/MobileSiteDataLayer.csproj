@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="ConnectionHandler.cs" />
+    <Compile Include="Implementation\BasketRepository.cs" />
     <Compile Include="Implementation\HomePageRepository.cs" />
     <Compile Include="Implementation\MobileSiteRepository.cs" />
     <Compile Include="Implementation\OrderRepository.cs" />

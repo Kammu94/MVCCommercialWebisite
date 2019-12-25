@@ -1,10 +1,11 @@
-﻿@Model ProductDetailModel 
+﻿@*@Model ProductDetailModel*@ 
 @{
     ViewBag.Title = "DescriptionPage";
+    //var userData = @Html.Raw(Json.Encode(Model));
 }
 
 
-<div ng-controller="ProductController"ng-init="getLatestProducts()">
+<div ng-controller="ProductController">
     <div class="container">
         <section>
             <div class="row">
@@ -19,13 +20,13 @@
             @*<div ng-controller="OrderController">*@
                 <div class="row">
                     <div class="col-lg-8 col-sm-12 col-xs-12">
-                        <div class="description-block">
+                        <div class="description-block" ng-repeat="productDetail in productDescription">
                             <div class="col-lg-6">
-                                <img src="~/Assests/images/@Model.SecondImage" class="img-responsive" ng-model="list.secondImage"/>
+                                <img src="~/Assests/images/{{productDetail}}.SecondImage" class="img-responsive" ng-bind="productDetail.imageFirst"/>
                                 <span>
-                                    <img src="~/Assests/images/@Model.FirstImage" class="img-thumbnail "ng-model="list.firstimage" />
-                                    <img src="~/Assests/images/@Model.ThirdImage" class="img-thumbnail "ng-model="list.thirdimage" />
-                                    <img src="~/Assests/images/@Model.SecondImage" class="img-thumbnail "ng-model="list.secondImage" />
+                                    <img src="~/Assests/images/{{productDetail.FirstImage}}" class="img-thumbnail "ng-bind="productDetail.FirstImage" />
+                                    <img src="~/Assests/images/{{productDetail.ThirdImage}}" class="img-thumbnail "ng-bind="productDetail.ThirdImage" />
+                                    <img src="~/Assests/images/{{productDetail.SecondImage}}" class="img-thumbnail "ng-bind="productDetail.SecondImage" />
 
                                 </span>
                                 <hr />
@@ -39,22 +40,22 @@
                             <div class="col-lg-6 description-text ">
 
 
-                                <p class="prod-details brand-size" ng-model="list.productName">
-                                    <strong>@Model.ProductName</strong>
+                                <p class="prod-details brand-size">
+                                    <strong>{{productDetail.ProductName}}</strong>
                                 </p>
 
-                                <p class="brand-name"ng-model="list.brandName">
+                                <p class="brand-name">
 
-                                    <strong>@Model.OperatingSystem</strong>
+                                    <strong>{{productDetail.OperatingSystem}}</strong>
                                 </p>
                                 <hr />
                                 @*We are showng  rating with stars *@
-                                <p class="color-filter" ng-model="list.color">
-                                    <strong>Color: @Model.Color</strong>
+                                <p class="color-filter" >
+                                    <strong>Color:{{productDetail.Color}}</strong>
 
                                     @if (Model.Rating == 3)
                                     {
-                                        <span class="rating pull-right" ng-model="list.rating">
+                                        <span class="rating pull-right">
                                             <i class="fa fa-star star-shine"></i>
                                             <i class="fa fa-star star-shine"></i>
                                             <i class="fa fa-star star-shine"></i>
@@ -66,7 +67,7 @@
                                     @if (Model.Rating == 1)
                                     {
 
-                                        <span class="rating pull-right" ng-model="list.rating">
+                                        <span class="rating pull-right">
                                             <i class="fa fa-star star-shine"></i>
                                             <i class="fa fa-star star-dull"></i>
                                             <i class="fa fa-star star-dull"></i>
@@ -79,7 +80,7 @@
 
                                     {
 
-                                        <span class="rating pull-right" ng-model="list.rating">
+                                        <span class="rating pull-right" >
                                             <i class="fa fa-star star-shine"></i>
                                             <i class="fa fa-star star-shine"></i>
                                             <i class="fa fa-star star-dull"></i>
@@ -91,7 +92,7 @@
                                     @if (Model.Rating == 4)
                                     {
 
-                                        <span class="rating pull-right" ng-model="list.rating">
+                                        <span class="rating pull-right" >
                                             <i class="fa fa-star star-shine"></i>
                                             <i class="fa fa-star star-shine"></i>
                                             <i class="fa fa-star star-shine"></i>
@@ -112,7 +113,7 @@
                                     @if (Model.Rating == 0)
                                     {
 
-                                        <span class="rating pull-right" ng-model="list.rating">
+                                        <span class="rating pull-right" >
                                             <i class="fa fa-star star-dull"></i>
                                             <i class="fa fa-star star-dull"></i>
                                             <i class="fa fa-star star-dull"></i>
@@ -125,24 +126,19 @@
                                     </p>
                             <hr />
 
-                            <p class="quantity"ng-model="list.quantity">
+                            <p class="quantity">
                                 <strong> Quantity</strong><input type="number" min="0" max="5" class="" />
 
                             </p>
                             <hr />
 
-                            <p class="price"ng-model="list.sellingPrice"><strong>Price:<span>&#36</span> @Model.SellingPrice</strong></p>
+                            <p class="price"><strong>Price:<span>&#36</span> {{productDetail.SellingPrice}}</strong></p>
                                 <hr />
 
-                            <input type="button" class="btn add-to-cart" value="Add To Cart" ng-click="addToCart(list)">
+                            <input type="button" class="btn add-to-cart" value="Add To Cart" ng-click="addToCart(productDetail)">
                         </div>
                     </div>
                     <hr />
-
-
-
-
-
 
 
                 </div>

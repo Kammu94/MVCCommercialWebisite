@@ -37,7 +37,8 @@ namespace MobileSiteDataLayer
                                
                                 Message=o.Message,
                                 isValid=(bool)o.IsValid,
-                                UserId=(Guid)o.UserId
+                                UserId=(Guid)o.UserId,
+                                FirstName=o.FirstName
 
                             }
                            ).ToList();

@@ -10,6 +10,9 @@
 
 
     $scope.sendDetails = function (prod) {
+        prod.FirstImage = $scope.FirstImage;
+        prod.SecondImage = $scope.SecondImage;
+        prod.ThirdImage = $scope.ThirdImage;
 
         if (prod.ProductId != null) { alert("not possible"); }
 

@@ -1,9 +1,10 @@
 ﻿    app.controller("OrderController", function ($scope, $http) {
-    $scope.addToCart = function (prod) {
+        $scope.addToCart = function (basket) {
 
-        $http.post("/Order/AddToCart").then(function (response) {
 
-            alert("Inserted")
-        });
-    }
+            $http.post("/Order/AddToCart", basket).then(function (response) {
+
+                alert("Inserted");
+            });
+        };
 });

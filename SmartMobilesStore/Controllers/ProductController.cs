@@ -30,7 +30,7 @@ namespace SmartMobilesStore.Controllers
             var ProductsListHome = service.GetListOfProducts();
             return Json(ProductsListHome);
 
-
+            
         }
         //it will get the list of products on list page
         public JsonResult GetProductsList()
@@ -50,8 +50,15 @@ namespace SmartMobilesStore.Controllers
 
 
         }
-        
-       public JsonResult GetSelectedFilter(List<FilterPropertiesModel> filters)
+        //added basket to item
+        //public JsonResult AddToBasket(BasketEntities basket)
+        //{
+        //    var data = service.AddToBasket(basket);
+
+        //    return Json(data);
+        //}
+
+        public JsonResult GetSelectedFilter(List<FilterPropertiesModel> filters)
         {
             var data = service.GetSelectedFilter();
 
@@ -94,9 +101,10 @@ namespace SmartMobilesStore.Controllers
             };
 
 
-          return  View(data);
+          return  RedirectToAction("DescriptionPage", data);
 
         }
+        public ActionResult DescriptionPage() { return View(); }
         public ActionResult ProductListPage()
         {
             return View();

@@ -50,6 +50,12 @@ namespace MobileSiteBusinessLogic
             return Add.GetProductsByColor(filterColors, SelectedFilter1);
 
         }
+        //public BasketEntities AddToBasket(BasketEntities basket)
+        //{
+
+
+        //    return Add.AddToBasket(basket);
+        //}
         public bool DeleteSelectedFilter(Guid id)
         { 
             return Add.DeleteSelectedFilter(id);

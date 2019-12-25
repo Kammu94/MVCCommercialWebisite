@@ -5,6 +5,8 @@
     $scope.getBulkProductList = [];
     $scope.isFilter = false;
     $scope.selectedFilter = {};
+    $scope.productDescription = [];
+    $scope.GrandTotal = 0;
     
 
     $scope.getLatestProducts = function () {
@@ -16,8 +18,41 @@
                 alert("failure in getdata");
             }
 
-        )
-    }
+        );
+    };
+
+    $scope.addToCart = function (basket) {
+
+
+        $http.post("/Basket/AddToCart", basket).then(function (response) {
+
+            $scope.getUserBasket(basket.ProductId);
+        
+        });
+    };
+    $scope.getUserBasket = function () {
+      
+        $http.post("/Basket/GetUserBasket").then(function (response) {
+            $scope.basketItems = response.data;
+           
+            angular.forEach($scope.basketItems, function (value) {
+                $scope.GrandTotal = $scope.GrandTotal + value.LineTotal;
+
+
+            });
+
+            $('#myCart').modal('show'); 
+        });
+    };
+    //delteItemFromUserBasket
+    $scope.delteItemFromUserBasket = function (item) {
+
+        $http.post("/Basket/DeleteUserBasket",item).then(function (response) {
+            
+            $scope.getUserBasket();
+            });
+
+    };
     //list of products on homepage
     $scope.getFeaturedProducts = function () {
         $http.post("/Product/GetListOfProducts").then(function (response) {
@@ -92,6 +127,31 @@
             function (error) {
                 alert("failure in get filters");
             }
+        )
+    }
+    //$scope.addToCart = function (list) {
+
+    //    var data = list;
+    //    $http.post("/Product/AddToBasket", data).then(function (response) {
+    //        var resp = response.data;
+    //    },
+    //        function (error) {
+    //            alert("Fails in adding data in basket");
+    //        }
+
+    //    )
+    //}
+    //getProductDescription(prod.ProductId)
+    $scope.getProductDescription = function (productId) {
+
+        var id = {id:productId}
+        $http.post("/Product/DescriptionPage", id).then(function (response) {
+            $scope.productDescription = response.data;
+        },
+            function (error) {
+                alert("Fails in adding data in basket");
+            }
+
         )
     }
     $scope.deleteSelectedFilter = function (filterId)

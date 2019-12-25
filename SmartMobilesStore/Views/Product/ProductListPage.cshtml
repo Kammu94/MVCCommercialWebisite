@@ -1,10 +1,11 @@
 ﻿@Model ProductDetailModel
 @using SmartMobilesStore.Enums
 
+
 @{
     ViewBag.Title = "ProductListPage";
 }
-<div ng-controller="ProductController" ng-init="getProductsList();getSelectedFilter()">
+@*<div ng-controller="ProductController" ng-init="getProductsList();getSelectedFilter()">
     <div class="container">
         <div class="row">
 
@@ -17,8 +18,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-12 col-xs-12">
-                    <!--left side bar-->
+                    <button class="btn btn-black" data-toggle="modal" data-target="#cartModal" ng-click="getUserBasket()">Show Basket</button>
+                    left side bar
                     <label for="Search">Choose Your Mobile</label>
+
                     <input type="text" placeholder="Enter your Text" ng-model="operatingSystemFilter" />
                     <div class="filter-color-heading"><h4>Filter By Color:</h4></div>
                     <div class="blue-filter-color"><button class="btn btn-primary" ng-click="getProductsByColor('blue');getSelectedFilter()"></button>&nbsp&nbsp<span>Blue</span></div>
@@ -27,13 +30,15 @@
                     <div class="black-filter-color"><button class="btn btn-black" ng-click="getProductsByColor('black');getSelectedFilter()"></button>&nbsp&nbsp<span>Black</span></div>
                     <br />
                     <br />
-                    <div class="selected-filter"ng-show="selectedFilter.length>0"><h3>Selected Filters</h3>
-                    <div ng-repeat="filter in selectedFilter"><button class="btn btn-primary" value="{{filter.FilterName}}" ng-click="deleteSelectedFilter(filter.Id)">{{filter.FilterName}}</button></div>
-                    
+                    <div class="selected-filter" ng-show="selectedFilter.length>0">
+                        <h3>Selected Filters</h3>
+                        <div ng-repeat="filter in selectedFilter"><button class="btn btn-primary" value="{{filter.FilterName}}" ng-click="deleteSelectedFilter(filter.Id)">{{filter.FilterName}}</button></div>
+
                     </div>
                 </div>
                 <div class="col-md-9 col-sm-12 col-xs-12">
                     <div class="sortby-box">
+
                         <div class="text-center">
                             <span>Sort By</span>
                             <select ng-model="operatingSystemFilter">
@@ -48,78 +53,522 @@
 
                         </div>
                     </div>
-                    <div class="product-list" ng-controller="OrderController">
+                    <div class="product-list" ng-show="basketItems.length==0||basketItems=='null'||basketItems==undefined">
                         <div class="row">
                             <div class="col-md-4 col-sm-4 col-xs-12 " ng-repeat="prod in getBulkProductList|filter:operatingSystemFilter">
                                 <div class=" product-item">
                                     <div class="product-img">
-                                        <a href="~/Product/DescriptionPage/{{prod.ProductId}}">
+                                        @*<a href="~/Product/DescriptionPage/{{prod.ProductId}}">*@
 
-                                            <img ng-src="~/Assests/images/{{prod.SecondImage}}" class="img-responsive" />
-                                        </a>
+@*<img ng-src="~/Assests/images/{{prod.SecondImage}}" class="img-responsive img-size" ng-click="getProductDescription(prod.ProductId)" />
+    @*</a>*@
 
-                                    </div>
-                                    <div class="product-info brand-name">
-                                        <div class="prod-text text-center">
-                                            <a href="~/Product/DescriptionPage/{{prod.ProductId}}">
-                                                <h6 class=" prod-title" ng-bind="prod.ProductName"></h6>
-                                            </a>
+@*</div>
+                    <div class="product-info brand-name">
+                        <div class="prod-text text-center">
+                            <a href="~/Product/DescriptionPage/{{prod.ProductId}}">
+                            <h6 class=" prod-title" ng-bind="prod.ProductName" ng-click="getProductDescription(prod.ProductId)"></h6>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class=" prod-rating">
+                        <i class="fa fa-star star-shine"></i>
+                        <i class="fa fa-star star-shine"></i>
+                        <i class="fa fa-star star-shine"></i>
+                        <i class="fa fa-star star-dull"></i>
+                        <i class="fa fa-star star-dull"></i>
+                    </div>
+                    <div class="prod-operatingsytem">
+                        <a href="~/Product/DescriptionPage/{{prod.ProductId}}"><h6 class="brand-name" ng-bind="prod.OperatingSystem" ng-click="getProductDescription(prod.ProductId)"></h6></a>
+
+                    </div>
+                    <div class="prod-price">
+                        <h3 class="prod-price" ng-bind="prod.SellingPrice"></h3>
+                        <button class="btn add-to-cart" ng-click="addToCart(prod);prod.Quantity=1;">Shop Now</button>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>*@
+@*Cart design*@
+
+
+@*<div class="item" ">
+        <div class="buttons">
+            <span class="btn btn-danger" value="Delete"></span>
+
+        </div>
+
+        <div class="image">
+            <img src="item.Image" alt="" />
+        </div>
+
+        <div class="description">
+            <span><strong>{{item.ProductName}}</strong></span>
+
+        </div>
+
+        <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+                <img src="plus.svg" alt="" />
+            </button>
+            <input type="text" name="name" value="{{item.Quantity}}">
+            <button class="minus-btn" type="button" name="button">
+                <img src="minus.svg" alt="" />
+            </button>
+        </div>
+
+        <div class="total-price">{{item.SellingPrice}}</div>
+    </div>*@
+
+
+
+@*<div class="" ng-show="basketItems.length > 0">
+                        <table id="cart" class="table table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th style="width:50%">Product</th>
+                                    <th style="width:10%">Price</th>
+                                    <th style="width:8%">Quantity</th>
+                                    <th style="width:22%" class="text-center">Subtotal</th>
+                                    <th style="width:10%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in basketItems">
+                                    <td data-th="Product">
+                                        <div class="row">
+                                            <div class="col-sm-2 hidden-xs"><img src="~/Assests/images/{{item.Image}}" alt="..." class="img-responsive" /></div>
+                                            <div class="col-sm-10">
+                                                <h4 class="nomargin"><strong>{{item.ProductName}}</strong></h4>
+                                                <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                                            </div>
                                         </div>
-                                      </div>
-                                        @*<div class=" prod-rating">
-                                            <div ng-if="prod.Rating==1">
-                                                <i class="fa fa-star star-shine"></i>
-                                                <i class="fa fa-star star-dull"></i>
-                                                <i class="fa fa-star star-dull"></i>
-                                                <i class="fa fa-star star-dull"></i>
-                                                <i class="fa fa-star star-dull"></i>
+                                    </td>
+                                    <td data-th="Price">{{item.SellingPrice}}</td>
+                                    <td data-th="Quantity">
+                                        <input type="number" class="form-control text-center" value="{{item.Quantity}}" ng-model="item.Quantity" ng-change="addToCart(item)">
+                                    </td>
+                                    <td data-th="Subtotal" class="text-center">{{item.LineTotal}}</td>
+                                    <td class="actions" data-th="">
+                                        <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                                        <button class="btn btn-danger btn-sm" ng-click="delteItemFromUserBasket(item)"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="visible-xs">
+                                    <td class="text-center"><strong>{{$scope.GrandTotal}}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#" class="btn btn-primary"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                                    <td colspan="2" class="hidden-xs"></td>
+                                    <td class="hidden-xs text-center"><strong>{{GrandTotal}}</strong></td>
+                                    <td><a href="#" class="btn btn-success">Checkout <i class="fa fa-angle-right"></i></a></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>*@
+@*</div>*@
+
+
+
+
+@*model for basket view*@
+<div ng-controller="ProductController" ng-init="getProductsList();getSelectedFilter()">
+    
+    <div class="ads-grid py-sm-5 py-4">
+        <div class="container py-xl-4 py-lg-2">
+            <!-- tittle heading -->
+            <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+                <span>M</span>obiles
+                <span>&</span>
+                <span>C</span>omputers
+            </h3>
+            <!-- //tittle heading -->
+            <div class="row">
+                <!-- product left -->
+                <div class="agileinfo-ads-display col-lg-9">
+                    <div class="wrapper">
+                        <!-- first section -->
+                        <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+                            <div class="row">
+                                <div class="col-md-4 product-men" ng-repeat="prod in getBulkProductList|filter:operatingSystemFilter">
+                                    <div class="men-pro-item simpleCart_shelfItem">
+                                        <div class="men-thumb-item text-center">
+                                            <img src="~/Assests/images/{{prod.SecondImage}}" alt="">
+                                            <div class="men-cart-pro">
+                                                <div class="inner-men-cart-pro">
+                                                    <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item-info-product text-center border-top mt-4">
+                                            <h4 class="pt-1">
+                                                <a href="single.html">{{prod.ProductName}}</a>
+                                            </h4>
+                                            <div class="info-product-price my-2">
+                                                <span class="item_price">{{prod.SellingPrice}}</span>
+                                                <del>$280.00</del>
+                                            </div>
+                                            <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+
+
+
+                                                <input type="submit" name="submit" value="Add to cart" class="button btn" ng-click="addToCart(prod);prod.Quantity=1" />
+
 
                                             </div>
-                                            <div ng-if="prod.Rating==2  ">
-                                                <i class="fa fa-star star-shine"></i>
-                                                <i class="fa fa-star star-dull"></i>
-                                                <i class="fa fa-star star-dull"></i>
-                                                <i class="fa fa-star star-dull"></i>
-                                                <i class="fa fa-star star-dull"></i>
 
-                                            </div>
-                                           
-                                         </div>*@
-
-
-                                            <div class=" prod-rating">
-                                                <i class="fa fa-star star-shine"></i>
-                                                <i class="fa fa-star star-shine"></i>
-                                                <i class="fa fa-star star-shine"></i>
-                                                <i class="fa fa-star star-dull"></i>
-                                                <i class="fa fa-star star-dull"></i>
-                                            </div>
-                                            <div class="prod-operatingsytem">
-                                                <a href="~/Product/DescriptionPage/{{prod.ProductId}}"><h6 class="brand-name" ng-bind="prod.OperatingSystem"></h6></a>
-
-                                            </div>
-                                            <div class="prod-price">
-                                                <h3 class="prod-price" ng-bind="prod.SellingPrice"></h3>
-                                                <button class="btn add-to-cart" ng-click="addToCart(prod);getCartDetails()">Shop Now</button>
-                                            </div>
-
-
-
-                                        
+                                        </div>
+                                    </div>
                                 </div>
+
+
+                            </div>
+                        </div>
+                        <!-- //first section -->
+                        <!-- second section -->
+                        <!-- //second section -->
+                        <!-- 3rd section -->
+                        <!-- //3rd section -->
+                        <!-- fourth section -->
+                        <!-- //fourth section -->
+                    </div>
+                </div>
+                <!-- //product left -->
+                <!-- product right -->
+                <div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
+                    <div class="side-bar p-sm-4 p-3">
+                        <div class="search-hotel border-bottom py-2">
+                            <h3 class="agileits-sear-head mb-3">Brand</h3>
+                            <form action="#" method="post">
+                                <input type="search" placeholder="Search Brand..." name="search" required="">
+                                <input type="submit" value=" ">
+                            </form>
+                            <div class="left-side py-2">
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" class="checked">
+                                        <span class="span">Samsung</span>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="checked">
+                                        <span class="span">Red Mi</span>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="checked">
+                                        <span class="span">Apple</span>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="checked">
+                                        <span class="span">Nexus</span>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="checked">
+                                        <span class="span">Motorola</span>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="checked">
+                                        <span class="span">Micromax</span>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="checked">
+                                        <span class="span">Lenovo</span>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="checked">
+                                        <span class="span">Oppo</span>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="checked">
+                                        <span class="span">Sony</span>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="checked">
+                                        <span class="span">LG</span>
+                                    </li>
+                                    <li>
+                                        <input type="checkbox" class="checked">
+                                        <span class="span">One Plus</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- ram -->
+                        <div class="left-side border-bottom py-2">
+                            <h3 class="agileits-sear-head mb-3">Ram</h3>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">Less than 512 MB</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">512 MB - 1 GB</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">1 GB</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">2 GB</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">3 GB</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">5 GB</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">6 GB</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">6 GB & Above</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- //ram -->
+                        <!-- price -->
+                        <div class="range border-bottom py-2">
+                            <h3 class="agileits-sear-head mb-3">Price</h3>
+                            <div class="w3l-range">
+                                <ul>
+                                    <li>
+                                        <a href="#">Under $1,000</a>
+                                    </li>
+                                    <li class="my-1">
+                                        <a href="#">$1,000 - $5,000</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">$5,000 - $10,000</a>
+                                    </li>
+                                    <li class="my-1">
+                                        <a href="#">$10,000 - $20,000</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">$20,000 $30,000</a>
+                                    </li>
+                                    <li class="mt-1">
+                                        <a href="#">Over $30,000</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- //price -->
+                        <!-- discounts -->
+                        <div class="left-side border-bottom py-2">
+                            <h3 class="agileits-sear-head mb-3">Discount</h3>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">5% or More</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">10% or More</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">20% or More</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">30% or More</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">50% or More</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">60% or More</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- //discounts -->
+                        <!-- offers -->
+                        <div class="left-side border-bottom py-2">
+                            <h3 class="agileits-sear-head mb-3">Offers</h3>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">Exchange Offer</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">No Cost EMI</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">Special Price</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- //offers -->
+                        <!-- delivery -->
+                        <div class="left-side border-bottom py-2">
+                            <h3 class="agileits-sear-head mb-3">Cash On Delivery</h3>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">Eligible for Cash On Delivery</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- //delivery -->
+                        <!-- arrivals -->
+                        <div class="left-side border-bottom py-2">
+                            <h3 class="agileits-sear-head mb-3">New Arrivals</h3>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">Last 30 days</span>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">Last 90 days</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="left-side py-2">
+                            <h3 class="agileits-sear-head mb-3">Availability</h3>
+                            <ul>
+                                <li>
+                                    <input type="checkbox" class="checked">
+                                    <span class="span">Exclude Out of Stock</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- //arrivals -->
+                    </div>
+                    <!-- //product right -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- //top products -->
+    <!-- middle section -->
+    <div class="join-w3l1 py-sm-5 py-4">
+        <div class="container py-xl-4 py-lg-2">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="join-agile text-left p-4">
+                        <div class="row">
+                            <div class="col-sm-7 offer-name">
+                                <h6>Smooth, Rich & Loud Audio</h6>
+                                <h4 class="mt-2 mb-3">Branded Headphones</h4>
+                                <p>Sale up to 25% off all in store</p>
+                            </div>
+                            <div class="col-sm-5 offerimg-w3l">
+                                <img src="images/off1.png" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-lg-0 mt-5">
+                    <div class="join-agile text-left p-4">
+                        <div class="row ">
+                            <div class="col-sm-7 offer-name">
+                                <h6>A Bigger Phone</h6>
+                                <h4 class="mt-2 mb-3">Smart Phones 5</h4>
+                                <p>Free shipping order over $100</p>
+                            </div>
+                            <div class="col-sm-5 offerimg-w3l">
+                                <img src="images/off2.png" alt="" class="img-fluid">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-  
-</div>
+    </div>
+    @*modal for basket*@
+
+    <div ng-controller="ProductController" class="modal fade" id="myCart" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Your Cart</h4>
+            </div>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <table id="cart" class="table table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th style="width:50%">Product</th>
+                                <th style="width:10%">Price</th>
+                                <th style="width:8%">Quantity</th>
+                                <th style="width:22%" class="text-center">Subtotal</th>
+                                <th style="width:10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in basketItems">
+                                <td data-th="Product">
+                                    <div class="row">
+                                        <div class="col-sm-2 hidden-xs"><img src="~/Assests/images/{{item.Image}}" alt="..." class="img-responsive" /></div>
+                                        <div class="col-sm-10">
+                                            <h4 class="nomargin"><strong>{{item.ProductName}}</strong></h4>
+                                            <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-th="Price">{{item.SellingPrice}}</td>
+                                <td data-th="Quantity">
+                                    <input type="number" class="form-control text-center" value="{{item.Quantity}}" ng-model="item.Quantity" ng-change="addToCart(item)">
+                                </td>
+                                <td data-th="Subtotal" class="text-center">{{item.LineTotal}}</td>
+                                <td class="actions" data-th="">
+                                    <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                                    <button class="btn btn-danger btn-sm" ng-click="delteItemFromUserBasket(item)"><i class="fa fa-trash-o"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="visible-xs">
+                                <td class="text-center"><strong>{{$scope.GrandTotal}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#" class="btn btn-primary"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                                <td colspan="2" class="hidden-xs"></td>
+                                <td class="hidden-xs text-center"><strong>{{GrandTotal}}</strong></td>
+                                <td><a href="#" class="btn btn-success">Checkout <i class="fa fa-angle-right"></i></a></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div></div>
 
 
-            
 
-    
-    
-@**@
+@*model cart*@
+
+
+
+
+
+
+
+
+
+

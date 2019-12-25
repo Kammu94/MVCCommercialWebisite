@@ -56,13 +56,16 @@ namespace SmartMobilesStore.Controllers
             {
                  HttpContext.Session["UserId"] = users[0].UserId;
                  HttpContext.Session["Email"] = users[0].Email;
-     
+                 HttpContext.Session["FirstName"] = users[0].FirstName;
+
+
             }
             return Json(users);
 
         }
         public ActionResult Login()
         {
+            
             return View();
         }
         //It is use to redirect from Login to homepage

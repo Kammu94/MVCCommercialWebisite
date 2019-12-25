@@ -11,11 +11,11 @@ namespace MobileSiteDataLayer
         public bool AddToCart(string Email, Guid ProductId, int Quantity, Guid UserId, int Total, Guid BasketId,
                              float SellingPrice, Guid ItemId)
         {
-            using (var ConStr = ConnectionHandler.GetConString())
-            {
-                var repos = ConStr.ProcInsertBasketItems(Email, ProductId, Quantity, UserId, Total, BasketId, (int)SellingPrice,
-                                                         ItemId);
-            }
+            //using (var ConStr = ConnectionHandler.GetConString())
+            //{
+            //    var repos = ConStr.ProcInsertBasketItems(Email, ProductId, Quantity, UserId, Total, BasketId, (int)SellingPrice,
+            //                                             ItemId);
+            //}
             return true;
         }
     }

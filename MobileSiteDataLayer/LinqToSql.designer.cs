@@ -94,25 +94,11 @@ namespace MobileSiteDataLayer
 			return ((ISingleResult<ProcGetProductPageDetailsResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ProcGetLoginCredentials")]
-		public ISingleResult<ProcGetLoginCredentialsResult> ProcGetLoginCredentials([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(50)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(50)")] string password)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email, password);
-			return ((ISingleResult<ProcGetLoginCredentialsResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ProcInsertSiteUserCredentials")]
 		public ISingleResult<ProcInsertSiteUserCredentialsResult> ProcInsertSiteUserCredentials([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="FirstName", DbType="NVarChar(50)")] string firstName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="LastName", DbType="NVarChar(50)")] string lastName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(50)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(50)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="NVarChar(50)")] string gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Country", DbType="NVarChar(50)")] string country, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContactNumber", DbType="VarChar(50)")] string contactNumber)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, firstName, lastName, email, password, gender, country, contactNumber);
 			return ((ISingleResult<ProcInsertSiteUserCredentialsResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ProcInsertBasketItems")]
-		public ISingleResult<ProcInsertBasketItemsResult> ProcInsertBasketItems([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(50)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> productId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Quantity", DbType="Int")] System.Nullable<int> quantity, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Total", DbType="Int")] System.Nullable<int> total, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BasketId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> basketId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SellingPrice", DbType="Int")] System.Nullable<int> sellingPrice, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ItemId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> itemId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email, productId, quantity, userId, total, basketId, sellingPrice, itemId);
-			return ((ISingleResult<ProcInsertBasketItemsResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ProcGetProductList")]
@@ -169,6 +155,41 @@ namespace MobileSiteDataLayer
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), color, selectedFilter);
 			return ((ISingleResult<procGetProductsBycolorResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procIsBasketExisted")]
+		public ISingleResult<procIsBasketExistedResult> procIsBasketExisted([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
+			return ((ISingleResult<procIsBasketExistedResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ProcGetLoginCredentials")]
+		public ISingleResult<ProcGetLoginCredentialsResult> ProcGetLoginCredentials([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(50)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Password", DbType="NVarChar(50)")] string password)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email, password);
+			return ((ISingleResult<ProcGetLoginCredentialsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procGetUserBasketItems")]
+		public ISingleResult<procGetUserBasketItemsResult> procGetUserBasketItems([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId);
+			return ((ISingleResult<procGetUserBasketItemsResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.procDeleteUserBasket")]
+		public ISingleResult<procDeleteUserBasketResult> procDeleteUserBasket([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BasketHeaderId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> basketHeaderId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BasketLineId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> basketLineId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> productId)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, basketHeaderId, basketLineId, productId);
+			return ((ISingleResult<procDeleteUserBasketResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ProcInsertBasketItems")]
+		public ISingleResult<ProcInsertBasketItemsResult> ProcInsertBasketItems([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> productId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Quantity", DbType="Int")] System.Nullable<int> quantity, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Total", DbType="Decimal(10,2)")] System.Nullable<decimal> total, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BasketId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> basketId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="BasketHeaderId", DbType="UniqueIdentifier")] System.Nullable<System.Guid> basketHeaderId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Decimal(12,2)")] System.Nullable<decimal> price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StockCode", DbType="NVarChar(200)")] string stockCode)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), productId, quantity, userId, total, basketId, basketHeaderId, price, stockCode);
+			return ((ISingleResult<ProcInsertBasketItemsResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -796,68 +817,6 @@ namespace MobileSiteDataLayer
 		}
 	}
 	
-	public partial class ProcGetLoginCredentialsResult
-	{
-		
-		private System.Nullable<bool> _IsValid;
-		
-		private string _Message;
-		
-		private System.Nullable<System.Guid> _UserId;
-		
-		public ProcGetLoginCredentialsResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsValid", DbType="Bit")]
-		public System.Nullable<bool> IsValid
-		{
-			get
-			{
-				return this._IsValid;
-			}
-			set
-			{
-				if ((this._IsValid != value))
-				{
-					this._IsValid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(200)")]
-		public string Message
-		{
-			get
-			{
-				return this._Message;
-			}
-			set
-			{
-				if ((this._Message != value))
-				{
-					this._Message = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this._UserId = value;
-				}
-			}
-		}
-	}
-	
 	public partial class ProcInsertSiteUserCredentialsResult
 	{
 		
@@ -897,32 +856,6 @@ namespace MobileSiteDataLayer
 				if ((this._Message != value))
 				{
 					this._Message = value;
-				}
-			}
-		}
-	}
-	
-	public partial class ProcInsertBasketItemsResult
-	{
-		
-		private System.Nullable<System.Guid> _CartId;
-		
-		public ProcInsertBasketItemsResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CartId", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CartId
-		{
-			get
-			{
-				return this._CartId;
-			}
-			set
-			{
-				if ((this._CartId != value))
-				{
-					this._CartId = value;
 				}
 			}
 		}
@@ -1681,6 +1614,352 @@ namespace MobileSiteDataLayer
 				if ((this._Color != value))
 				{
 					this._Color = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procIsBasketExistedResult
+	{
+		
+		private System.Nullable<System.Guid> _Id;
+		
+		private System.Nullable<bool> _IsExisted;
+		
+		public procIsBasketExistedResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExisted", DbType="Bit")]
+		public System.Nullable<bool> IsExisted
+		{
+			get
+			{
+				return this._IsExisted;
+			}
+			set
+			{
+				if ((this._IsExisted != value))
+				{
+					this._IsExisted = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ProcGetLoginCredentialsResult
+	{
+		
+		private System.Nullable<bool> _IsValid;
+		
+		private string _Message;
+		
+		private System.Nullable<System.Guid> _UserId;
+		
+		private string _FirstName;
+		
+		public ProcGetLoginCredentialsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsValid", DbType="Bit")]
+		public System.Nullable<bool> IsValid
+		{
+			get
+			{
+				return this._IsValid;
+			}
+			set
+			{
+				if ((this._IsValid != value))
+				{
+					this._IsValid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(200)")]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this._Message = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(200)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procGetUserBasketItemsResult
+	{
+		
+		private System.Nullable<System.Guid> _ProductId;
+		
+		private string _ProductName;
+		
+		private System.Nullable<int> _Quantity;
+		
+		private System.Nullable<decimal> _Price;
+		
+		private string _SecondImage;
+		
+		private System.Nullable<System.Guid> _BaketHeaderId;
+		
+		private string _Description;
+		
+		private System.Nullable<int> _Total;
+		
+		private System.Nullable<System.Guid> _Id;
+		
+		public procGetUserBasketItemsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					this._ProductId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductName", DbType="NVarChar(50)")]
+		public string ProductName
+		{
+			get
+			{
+				return this._ProductName;
+			}
+			set
+			{
+				if ((this._ProductName != value))
+				{
+					this._ProductName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int")]
+		public System.Nullable<int> Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this._Quantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(10,2)")]
+		public System.Nullable<decimal> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecondImage", DbType="NVarChar(50)")]
+		public string SecondImage
+		{
+			get
+			{
+				return this._SecondImage;
+			}
+			set
+			{
+				if ((this._SecondImage != value))
+				{
+					this._SecondImage = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BaketHeaderId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> BaketHeaderId
+		{
+			get
+			{
+				return this._BaketHeaderId;
+			}
+			set
+			{
+				if ((this._BaketHeaderId != value))
+				{
+					this._BaketHeaderId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Int")]
+		public System.Nullable<int> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class procDeleteUserBasketResult
+	{
+		
+		private System.Nullable<bool> _IsValid;
+		
+		public procDeleteUserBasketResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsValid", DbType="Bit")]
+		public System.Nullable<bool> IsValid
+		{
+			get
+			{
+				return this._IsValid;
+			}
+			set
+			{
+				if ((this._IsValid != value))
+				{
+					this._IsValid = value;
+				}
+			}
+		}
+	}
+	
+	public partial class ProcInsertBasketItemsResult
+	{
+		
+		private System.Nullable<System.Guid> _BasketId;
+		
+		public ProcInsertBasketItemsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BasketId", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> BasketId
+		{
+			get
+			{
+				return this._BasketId;
+			}
+			set
+			{
+				if ((this._BasketId != value))
+				{
+					this._BasketId = value;
 				}
 			}
 		}

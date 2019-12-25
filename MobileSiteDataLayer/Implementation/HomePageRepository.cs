@@ -127,7 +127,7 @@ namespace MobileSiteDataLayer
                 var repo = (from o in ConStr.procGetProductsBycolor(filters, SelectedFilter)
                             select new ProductDetailEntities
                             {
-
+                                ProductId=o.ProductId,
                                 ProductName = o.ProductName,
                                 SellingPrice = (float)o.SellingPrice,
 
@@ -160,6 +160,20 @@ namespace MobileSiteDataLayer
             }
 
         }
+        //public BasketEntities AddToBasket(BasketEntities basket)
+        //{
+        //    using (var ConStr = ConnectionHandler.GetConString())
+        //    {
+        //        var repo = (from o in ConStr.ProcInsertBasketItems(basket.Email,basket.ProductId,basket.Quantity,basket.UserId,Convert.ToInt32(basket.GrandTotal),basket.Id,Convert.ToInt32(basket.Price),basket.ItemId)
+        //                    select new BasketEntities
+        //                    {
+        //                        Id = o.CartId.GetValueOrDefault()
+        //                    }
+        //                       ).FirstOrDefault();
+        //        return repo;
+        //    }
+
+        //}
         public bool DeleteSelectedFilter(Guid id)
         {
             using (var ConStr = ConnectionHandler.GetConString())
